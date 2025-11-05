@@ -1,166 +1,336 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>zx | SAW滤波器工程师</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>ZX · SAW滤波器 / 射频 / 天线工程师</title>
+  <meta name="description" content="ZX - 四川大学硕士，SAW滤波器与射频/天线工程师。HFSS/ADS/COMSOL/MATLAB 仿真与测试，发表相关论文，B站有射频制作与测试视频。">
   <style>
-    body {
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", sans-serif;
-      background-color: #fff;
-      color: #222;
-      margin: 0;
-      line-height: 1.7;
+    :root{
+      --bg:#ffffff;
+      --muted:#6b7280;
+      --text:#0f172a;
+      --accent:#0071e3;
+      --card:#fbfbfd;
+      --glass: rgba(15,23,42,0.03);
+      --maxw:1100px;
     }
-    header {
-      text-align: center;
-      padding: 80px 20px 40px;
-      border-bottom: 1px solid #eee;
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family: -apple-system, "SF Pro Text", BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", "PingFang SC", "Microsoft Yahei", sans-serif;
+      background:var(--bg);
+      color:var(--text);
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      line-height:1.6;
     }
-    header h1 {
-      font-size: 2.6rem;
-      margin-bottom: 0.4rem;
-      font-weight: 600;
-      color: #111;
+
+    header.site-header{
+      max-width:var(--maxw);
+      margin:24px auto;
+      display:flex;
+      gap:24px;
+      align-items:center;
+      padding:20px;
     }
-    header p {
-      color: #555;
-      font-size: 1.1rem;
+    .avatar{
+      width:118px;height:118px;border-radius:18px;
+      background:var(--glass);
+      display:flex; align-items:center; justify-content:center;
+      overflow:hidden; flex:0 0 118px;
+      box-shadow:0 8px 30px rgba(2,6,23,0.06);
     }
-    section {
-      max-width: 1000px;
-      margin: 0 auto;
-      padding: 60px 20px;
-      border-bottom: 1px solid #f3f3f3;
+    .avatar img{width:100%; height:100%; object-fit:cover; display:block}
+    .title{
+      flex:1;
     }
-    h2 {
-      font-size: 1.8rem;
-      font-weight: 600;
-      color: #111;
-      text-align: center;
-      margin-bottom: 1.5rem;
+    .title h1{margin:0; font-size:28px; font-weight:700}
+    .title .subtitle{margin:6px 0 12px; color:var(--muted); font-size:14px}
+    .contact{color:var(--muted); font-size:14px;}
+    .contact a{color:var(--accent); text-decoration:none}
+
+    nav.topnav{
+      max-width:var(--maxw);
+      margin: 6px auto 18px;
+      padding: 0 20px;
+      display:flex;
+      gap:18px;
+      align-items:center;
     }
-    ul { list-style: none; padding: 0; }
-    li { margin-bottom: 0.6rem; }
-    .video-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(420px, 1fr));
-      gap: 24px;
+    nav.topnav a{
+      color:var(--muted); text-decoration:none; font-weight:500; padding:6px 10px; border-radius:8px;
     }
-    iframe {
-      width: 100%;
-      height: 380px;
-      border-radius: 14px;
-      border: none;
-      box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+    nav.topnav a:hover{background:rgba(0,113,227,0.06); color:var(--accent)}
+
+    main{max-width:var(--maxw); margin: 0 auto; padding: 10px 20px 80px;}
+    section.card{
+      background:var(--card);
+      border-radius:14px;
+      padding:26px;
+      margin-bottom:20px;
+      box-shadow:0 6px 24px rgba(12,18,31,0.04);
     }
-    footer {
-      text-align: center;
-      color: #999;
-      padding: 40px 10px;
-      font-size: 0.9rem;
+    section.card h2{margin:0 0 12px; font-size:20px}
+    .two-col{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap:22px;
     }
-    .highlight { color: #0071e3; font-weight: 500; }
-    strong { color: #111; }
-    @media (max-width: 600px) {
-      header h1 { font-size: 2rem; }
-      section { padding: 40px 15px; }
-      iframe { height: 220px; }
+    .skills ul, .proj-list, .edu-list, .pub-list {margin:0; padding:0; list-style:none}
+    .skills li{padding:6px 0; color:var(--muted)}
+    .proj-item {margin-bottom:12px}
+    .badge{display:inline-block; padding:6px 8px; font-size:13px; border-radius:8px; background:rgba(0,0,0,0.04); color:var(--muted); margin-right:8px}
+
+    /* 视频网格 */
+    .video-grid{
+      display:grid;
+      grid-template-columns: repeat(auto-fit,minmax(320px,1fr));
+      gap:18px;
+      margin-top:8px;
+    }
+    .video-frame{
+      border-radius:12px; overflow:hidden; box-shadow:0 8px 26px rgba(2,6,23,0.06);
+    }
+    .video-frame iframe{width:100%; height:360px; border:0; display:block}
+
+    footer.site-footer{
+      max-width:var(--maxw);
+      margin:40px auto 80px; color:var(--muted); font-size:13px; text-align:center;
+    }
+
+    @media (max-width:900px){
+      .two-col{grid-template-columns:1fr}
+      .avatar{width:96px;height:96px;border-radius:12px}
+      .video-frame iframe{height:220px}
     }
   </style>
+  <script>
+    // 平滑滚动（用于导航锚点）
+    document.addEventListener('DOMContentLoaded',function(){
+      document.querySelectorAll('a[data-anchor]').forEach(function(a){
+        a.addEventListener('click',function(e){
+          e.preventDefault();
+          var id = this.getAttribute('href').slice(1);
+          var el = document.getElementById(id);
+          if(el) el.scrollIntoView({behavior:'smooth', block:'start'});
+        });
+      });
+    });
+  </script>
 </head>
 
 <body>
-  <header>
-    <h1>zx</h1>
-    <p>硕士 · 四川大学电子科学与技术 · SAW滤波器工程师</p>
-    <p>邮箱：<a href="mailto:928201948@qq.com">928201948@qq.com</a> ｜ 电话：13072862897</p>
+  <!-- Header -->
+  <header class="site-header" role="banner">
+    <div class="avatar" aria-hidden="true">
+      <!-- 上传头像到仓库：assets/avatar.jpg 或者改成你的URL -->
+      <img src="/assets/avatar.jpg" alt="ZX 头像" onerror="this.style.display='none'"/>
+    </div>
+    <div class="title">
+      <h1>ZX</h1>
+      <div class="subtitle">求职意向：SAW滤波器 / 射频 / 天线工程师 · 硕士 · 四川大学</div>
+      <div class="contact">
+        出生：1997.12 ｜ 籍贯：四川眉山 ｜ 英语：CET-4<br/>
+        邮箱：<a href="mailto:928201948@qq.com">928201948@qq.com</a> ｜ 电话：13072862897
+      </div>
+    </div>
   </header>
 
-  <section>
-    <h2>专业技能</h2>
-    <ul>
-      <li><span class="highlight">仿真设计：</span> 精通 HFSS、ADS、MATLAB、COMSOL，能够独立完成 SAW 滤波器、谐振器、天线、射频电路建模与仿真。</li>
-      <li><span class="highlight">版图设计：</span> 熟练 AutoCAD、Cadence Virtuoso、DRC 验证，具备 layout-to-simulation 能力。</li>
-      <li><span class="highlight">编程开发：</span> 使用 MATLAB 开发 ADS/HFSS 自动化脚本，建立仿真端口、导入导出参数、生成 layout 等工具。</li>
-      <li><span class="highlight">实验与测试：</span> 熟练使用信号源、VNA、功率计、微波暗室天线测试系统，能独立搭建射频整机测试环境。</li>
-    </ul>
-  </section>
+  <!-- Nav -->
+  <nav class="topnav" aria-label="主导航">
+    <a href="#summary" data-anchor>简介</a>
+    <a href="#skills" data-anchor>技能</a>
+    <a href="#experience" data-anchor>经历</a>
+    <a href="#projects" data-anchor>科研/项目</a>
+    <a href="#papers" data-anchor>论文</a>
+    <a href="#videos" data-anchor>视频</a>
+    <a href="#more" data-anchor>其他/兴趣</a>
+    <a href="#contact" data-anchor>联系方式</a>
+  </nav>
 
-  <section>
-    <h2>工作经历</h2>
-    <p><strong>江苏zsw电子</strong> （2024.07—至今）｜ SAW滤波器工程师</p>
-    <ul>
-      <li>COMSOL 仿真 SAW 谐振器（2维、2.5维、3维、DMS），设计横模抑制结构，提取 COM 参数。</li>
-      <li>HFSS 仿真电磁环境（layout、package、EVB），ADS 优化结构参数设计滤波器。</li>
-      <li>综合考虑功率、谐波、互调，完成多频段滤波器设计（B13、B40、N77、N78、WiFi 等）。</li>
-      <li>AutoCAD、Virtuoso 绘制走线并完成 DRC 验证；MATLAB 开发 ADS/HFSS 自动脚本应用。</li>
-    </ul>
-  </section>
+  <main>
+    <!-- 简介 -->
+    <section id="summary" class="card" aria-labelledby="summary-title">
+      <h2 id="summary-title">个人简介</h2>
+      <p style="color:var(--muted); margin-top:6px;">
+        我是ZX，电子科学与技术硕士（四川大学），目前任职于江苏ZSW电子，主要从事 SAW 谐振器与滤波器的仿真、设计与测试工作。
+        擅长用 COMSOL/HFSS/ADS/Matlab 等工具从器件级建模到产品级设计与验证，熟悉版图绘制与 DRC、并能独立搭建测试系统（VNA、信号源、功率计、暗室等）。
+      </p>
+      <div style="margin-top:12px;">
+        <span class="badge">求职意向：SAW滤波器/射频/天线工程师</span>
+        <span class="badge">当前公司：江苏ZSW电子（2024.07—至今）</span>
+      </div>
+    </section>
 
-  <section>
-    <h2>教育背景</h2>
-    <ul>
-      <li><strong>四川大学（985）</strong>｜电子信息学院｜硕士｜电子科学与技术（2021.09–2024.07）</li>
-      <li><strong>四川大学（985）</strong>｜电子信息学院｜本科｜电子信息科学与技术（2017.09–2021.07）</li>
-    </ul>
-  </section>
+    <!-- 技能 -->
+    <section id="skills" class="card" aria-labelledby="skills-title">
+      <h2 id="skills-title">专业技能</h2>
+      <div class="two-col">
+        <div>
+          <h3 style="margin-top:0">仿真 & 设计</h3>
+          <ul class="skills">
+            <li>精通 HFSS、ADS、COMSOL、MATLAB：SAW 谐振器、滤波器、天线、电磁建模与优化。</li>
+            <li>熟悉 CST、Origin、Visio 用于数据处理/结构建模。</li>
+            <li>仿真覆盖：2D/2.5D/3D、DMS 模型、横模抑制结构、COM 参数提取。</li>
+          </ul>
+        </div>
+        <div>
+          <h3 style="margin-top:0">开发 & 实验</h3>
+          <ul class="skills">
+            <li>熟练 AutoCAD、Cadence Virtuoso（版图绘制、DRC 验证）。</li>
+            <li>MATLAB 脚本开发（ADS/HFSS 自动化 App、layout 生成、数据导入导出）。</li>
+            <li>熟悉信号源、VNA、功率计、微波暗室天线测试系统，能搭建完整测试流程。</li>
+            <li>熟悉 Altium Designer、Pycharm、VS Code 等常用工具。</li>
+          </ul>
+        </div>
+      </div>
+    </section>
 
-  <section>
-    <h2>科研与项目经历</h2>
-    <ul>
-      <li><strong>面向环境射频能量收集的宽频整流电路（2023.9–2024.2）</strong><br>
-      使用 ADS 优化匹配与整流电路，搭建射频能量采集测试系统；发表论文《应用科技》。 </li>
-      <li><strong>双极化共轭匹配整流天线（2023.6–2024.2）</strong><br>
-      设计 2.45GHz 双极化贴片天线，与二极管阻抗共轭匹配，提高无线能量传输效率。 </li>
-      <li><strong>基于串馈微带阵列的 2.45GHz 行波天线（2022.12–2023.5）</strong><br>
-      设计并优化阵列方向图，与整流电路结合测试能量接收性能。</li>
-      <li><strong>面向卫星通信的内导体非接触同轴接头（2022.12–2023.5）</strong><br>
-      提出低PIM非接触式结构，建立等效电路模型，论文发表于《太赫兹科学与电子信息学报》。 </li>
-    </ul>
-  </section>
+    <!-- 工作经历 -->
+    <section id="experience" class="card" aria-labelledby="exp-title">
+      <h2 id="exp-title">工作经历</h2>
+      <div>
+        <p><strong>江苏ZSW电子</strong> · SAW滤波器工程师（2024.07 — 至今）</p>
+        <ul>
+          <li>使用 COMSOL 对 SAW 谐振器进行 2D/2.5D/3D/DMS 仿真，设计横模抑制结构并提取 COM 参数。</li>
+          <li>在 HFSS 中做 EM 仿真（layout、package、EVB 等），并结合 ADS 进行结构参数优化与滤波器设计。</li>
+          <li>在设计中综合考虑功率、谐波与无源互调（PIM）问题，完成多频段滤波器（B13、B40、N77、N78、WiFi 等）。</li>
+          <li>使用 AutoCAD、Cadence Virtuoso 完成走线绘制与 DRC 验证；对实测结果进行拟合与参数提取。</li>
+          <li>开发 MATLAB 工具实现仿真流程自动化（ADS/HFSS 脚本 App、layout 生成等），提高研发效率。</li>
+        </ul>
+      </div>
+    </section>
 
-  <section>
-    <h2>发表论文</h2>
-    <ul>
-      <li>一作论文：《面向卫星通信的内导体非接触同轴接头设计》，《太赫兹科学与电子信息学报》。</li>
-      <li>一作论文：《一款面向环境射频能量收集的宽频整流电路》，《应用科技》。</li>
-    </ul>
-  </section>
+    <!-- 教育 -->
+    <section id="edu" class="card" aria-labelledby="edu-title">
+      <h2 id="edu-title">教育背景</h2>
+      <ul class="edu-list">
+        <li><strong>四川大学（985）</strong> · 电子信息学院 · 硕士 · 电子科学与技术（2021.09 — 2024.07）</li>
+        <li><strong>四川大学（985）</strong> · 电子信息学院 · 本科 · 电子信息科学与技术（2017.09 — 2021.07）</li>
+      </ul>
+    </section>
 
-  <section>
-    <h2>实践与兴趣</h2>
-    <ul>
-      <li>擅长自制射频电路与微带天线，独立完成八木、陷波、多频、宽频、环形等结构滤波器与天线超过 200 项。</li>
-      <li>拆解维修大疆无人机、手机、平板，维护实验室计算机设备，安装黑苹果系统。</li>
-      <li>路由器刷入 Padavan、OpenWRT 系统，自行搭建智能家居与 Mesh 网络。</li>
-      <li>兼职辅导高中数学与物理，累计学生 10+；研究生期间辅导考研普通物理 5+ 学生。</li>
-      <li>热爱视频创作与剪辑，B站分享射频电路与电子设备DIY项目。</li>
-    </ul>
-  </section>
+    <!-- 科研与项目 -->
+    <section id="projects" class="card" aria-labelledby="proj-title">
+      <h2 id="proj-title">科研与项目经历（选取）</h2>
 
-  <section>
-    <h2>B站视频展示</h2>
-    <div class="video-grid">
-      <iframe src="//player.bilibili.com/player.html?isOutside=true&aid=284057455&bvid=BV1oc411s7av&cid=1413615171&p=1"
-              scrolling="no" frameborder="no" allowfullscreen="true"></iframe>
-      <iframe src="//player.bilibili.com/player.html?isOutside=true&aid=394643579&bvid=BV1Co4y1e7XQ&cid=1017703815&p=1"
-              scrolling="no" frameborder="no" allowfullscreen="true"></iframe>
-    </div>
-  </section>
+      <div class="proj-list">
+        <div class="proj-item">
+          <strong>一款面向环境射频能量收集的宽频整流电路（2023.9 — 2024.2）</strong>
+          <p style="color:var(--muted)">项目描述：设计并测量面向环境射频能量收集的宽频整流电路，负责 ADS 仿真、版图拼版、测试搭建与数据分析。</p>
+          <ul>
+            <li>负责整流电路的 ADS 优化与匹配设计；电路版图拼版与加工。</li>
+            <li>搭建射频能量采集测试系统（信号源、VNA、功率计等），完成测量与效率计算。</li>
+            <li>成果：一作论文发表于《应用科技》。</li>
+          </ul>
+        </div>
 
-  <section>
-    <h2>自我评价</h2>
-    <ul>
-      <li>具备扎实的射频电路与电磁场理论基础，拥有完整的从设计、仿真、制板到测试的工程能力。</li>
-      <li>熟悉SAW滤波器设计与封装调试，能独立完成产品级验证。</li>
-      <li>思维严谨，沟通高效，善于将理论与工程实践结合。</li>
-      <li>具备一定的科研创新与编程开发能力，注重效率与可复用性。</li>
-    </ul>
-  </section>
+        <div class="proj-item">
+          <strong>双极化共轭匹配整流天线（2023.6 — 2024.2）</strong>
+          <p style="color:var(--muted)">项目描述：设计两款双极化共轭匹配整流天线，实现与整流二极管的阻抗匹配并提高能量传输效率。</p>
+          <ul>
+            <li>使用 ADS 计算不同功率二极管输入阻抗， HFSS 仿真设计 2.45GHz 双极化贴片天线。</li>
+            <li>进行加工与测量，搭建无线能量传输测试系统，并用弗里斯公式计算整流天线效率。</li>
+          </ul>
+        </div>
 
-  <footer>
-    © 2025 Zhang Xin | rficzx.me | Built with ❤️ using HTML + CSS
+        <div class="proj-item">
+          <strong>基于串馈微带阵列的 2.45GHz 行波天线（2022.12 — 2023.5）</strong>
+          <ul>
+            <li>使用 HFSS 进行阵列结构设计与方向图优化；与整流电路结合测试接收性能。</li>
+          </ul>
+        </div>
+
+        <div class="proj-item">
+          <strong>面向卫星通信的内导体非接触同轴接头设计（2022.12 — 2023.5）</strong>
+          <p style="color:var(--muted)">项目描述：提出低 PIM 的内导体非接触式同轴接头结构，设计并实现 S 波段与 C 波段样机。</p>
+          <ul>
+            <li>使用 CST 建模，ADS 建立等效集总电路模型，与实测 S 参数对比验证。</li>
+            <li>成果：一作论文发表于《太赫兹科学与电子信息学报》。</li>
+          </ul>
+        </div>
+
+        <div class="proj-item">
+          <strong>公司项目经验（在职参与）</strong>
+          <ul>
+            <li>B13 双工器、B40 单滤波器、N77 / N78 单滤波器、WiFi 滤波器、WiFi extractor 等。</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- 论文 -->
+    <section id="papers" class="card" aria-labelledby="pub-title">
+      <h2 id="pub-title">发表论文 / 成果</h2>
+      <ul class="pub-list">
+        <li>ZX（第一作者）：《面向卫星通信的内导体非接触同轴接头设计》，《太赫兹科学与电子信息学报》。</li>
+        <li>ZX（第一作者）：《一款面向环境射频能量收集的宽频整流电路》，《应用科技》。</li>
+      </ul>
+    </section>
+
+    <!-- 其他技能 & 实践 -->
+    <section id="more" class="card" aria-labelledby="more-title">
+      <h2 id="more-title">实践、兼职与兴趣</h2>
+      <div class="two-col">
+        <div>
+          <h3 style="margin-top:0">实践与技能拓展</h3>
+          <ul>
+            <li>手工制作射频电路与缝隙耦合微带贴片天线，能通过微调结构改变电参数，降低加工成本并缩短工期。</li>
+            <li>在闲鱼平台接单制作射频电路与天线，累计完成 200+ 项（含可重构滤波器、环形/平行耦合滤波器、八木/陷波/多频/宽频/阵列天线等）。</li>
+            <li>路由器刷入 Padavan / OpenWRT，自建智能家居与 Mesh 网络；搭建华为云服务器并基于 WordPress 搭站，配置 FTP。</li>
+            <li>拆解维修 DJI 无人机、手机、平板，维护实验室计算设备（含安装“黑苹果”系统）。</li>
+          </ul>
+        </div>
+        <div>
+          <h3 style="margin-top:0">兴趣与兼职</h3>
+          <ul>
+            <li>热爱视频剪辑与内容创作（B 站），内容包括 WiFi 天线自制、射频电路制作、校园卡芯片改造、无人机拆解等。</li>
+            <li>兼职高中数学/物理辅导（学生 10+），研期间辅导考研普通物理 5+ 学生。</li>
+            <li>喜欢物理与数学，注重工程实践与理论结合。</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- 视频 -->
+    <section id="videos" class="card" aria-labelledby="video-title">
+      <h2 id="video-title">B站视频 / 项目演示</h2>
+      <p style="color:var(--muted); margin-top:6px;">下面为近期上传的代表性视频（可嵌入播放）：</p>
+
+      <div class="video-grid">
+        <div class="video-frame">
+          <!-- 视频 1 -->
+          <iframe src="//player.bilibili.com/player.html?isOutside=true&aid=284057455&bvid=BV1oc411s7av&cid=1413615171&p=1"
+                  scrolling="no" frameborder="no" allowfullscreen="true" title="WiFi天线自制与调试"></iframe>
+        </div>
+        <div class="video-frame">
+          <!-- 视频 2 -->
+          <iframe src="//player.bilibili.com/player.html?isOutside=true&aid=394643579&bvid=BV1Co4y1e7XQ&cid=1017703815&p=1"
+                  scrolling="no" frameborder="no" allowfullscreen="true" title="射频电路制作演示"></iframe>
+        </div>
+      </div>
+    </section>
+
+    <!-- 联系与底部 -->
+    <section id="contact" class="card" aria-labelledby="contact-title">
+      <h2 id="contact-title">联系方式</h2>
+      <p style="color:var(--muted); margin-top:6px;">
+        邮箱：<a href="mailto:928201948@qq.com">928201948@qq.com</a><br/>
+        电话：13072862897<br/>
+        意向岗位：SAW滤波器工程师 / 射频工程师 / 天线工程师
+      </p>
+
+      <div style="margin-top:12px; color:var(--muted); font-size:13px;">
+        注：如需下载完整简历（DOCX）或项目报告，请联系邮箱获取。可按需提供论文 PDF、项目测试数据与仿真脚本。
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="site-footer">
+    © 2025 ZX · rficzx.me · SAW滤波器 / 射频 / 天线工程师
   </footer>
 </body>
 </html>
